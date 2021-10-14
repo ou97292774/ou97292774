@@ -16,7 +16,7 @@ __因服务器性能有限，上述脚本请尽量改一下默认定时，多运
 
 __青龙拉取__
 ```
-ql repo https://github.com/he1pu/JDHelp.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER|utils"
+ql repo https://github.com/ou97292774/qiuqiu.git "jd_|jx_|getJDCookie" "activity|backUp|jd_delCoupon" "^jd[^_]|USER|utils"
 ```
 
 __进入容器执行以下命令安装依赖__<br>
@@ -26,8 +26,7 @@ npm install -g png-js
 npm install -g jsdom
 ```
 
-[退会：JDMemberCloseAccount](https://github.com/yqchilde/JDMemberCloseAccount)<br>
-[哔哩哔哩签到](https://github.com/he1pu/signin)
+
 
 # Warning
 ### 带助力功能的脚本要使用本仓库的，其他仓库的没有适配新助力池
