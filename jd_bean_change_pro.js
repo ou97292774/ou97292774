@@ -59,7 +59,7 @@ if ($.isNode()) {
                 $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
 
                 if ($.isNode()) {
-                    await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`, `\n\n关注公众号,肉球，获取本通知`);
+                    await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`, `\n\n关注公众号,肉球，获取本通知：https://work.weixin.qq.com/wework_admin/wxplugin/getQRCode?size=224`);
                 }
                 continue
             }
@@ -78,7 +78,7 @@ if ($.isNode()) {
     }
 
     if ($.isNode() && allMessage) {
-        await notify.sendNotify(`${$.name}`, `${allMessage}`, {url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`}, `\n\n关注公众号,肉球，获取本通知`)
+        await notify.sendNotify(`${$.name}`, `${allMessage}`, {url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`}, `\n\n关注公众号,肉球，获取本通知：https://work.weixin.qq.com/wework_admin/wxplugin/getQRCode?size=224`)
     }
 })()
     .catch((e) => {
