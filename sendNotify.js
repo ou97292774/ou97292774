@@ -7,7 +7,7 @@
  * @param text 通知头
  * @param desp 通知体
  * @param params 某些推送通知方式点击弹窗可跳转, 例：{ url: 'https://abc.com' }
- * @param author 作者仓库等信息  例：`本通知 By：https://github.com/whyour/qinglong`
+ * @param author 作者仓库等信息  例：`获取本通知：关注公众号：肉球`
  */
 
 const querystring = require('querystring');
@@ -175,14 +175,14 @@ if (process.env.PUSH_PLUS_USER) {
  * @param text 通知头
  * @param desp 通知体
  * @param params 某些推送通知方式点击弹窗可跳转, 例：{ url: 'https://abc.com' }
- * @param author 作者仓库等信息  例：`本通知 By：https://github.com/whyour/qinglong`
+ * @param author 作者仓库等信息  例：`获取本通知：关注公众号：肉球`
  * @returns {Promise<unknown>}
  */
 async function sendNotify(
   text,
   desp,
   params = {},
-  author = '\n\n本通知 By：https://github.com/he1pu/JDHelp',
+  author = '\n\n获取本通知：关注公众号：肉球',
 ) {
   //提供6种通知
   desp += author; //增加作者信息，防止被贩卖等
@@ -194,14 +194,7 @@ async function sendNotify(
   text = text.match(/.*?(?=\s?-)/g) ? text.match(/.*?(?=\s?-)/g)[0] : text;
   await Promise.all([
     BarkNotify(text, desp, params), //iOS Bark APP
-     new Promise(async resolve=>{
-      var size=4000
-      for(var i=0;i<desp.length/size;i++)
-      {
-        await tgBotNotify(text,desp.substr(i*size,size))
-      }
-      resolve()
-    }), //telegram 机器人
+    tgBotNotify(text, desp), //telegram 机器人
     ddBotNotify(text, desp), //钉钉机器人
     qywxBotNotify(text, desp), //企业微信机器人
     qywxamNotify(text, desp), //企业微信应用消息推送
@@ -215,9 +208,9 @@ function gobotNotify(text, desp, time = 2100) {
     if (GOBOT_URL) {
       const options = {
         url: `${GOBOT_URL}?access_token=${GOBOT_TOKEN}&${GOBOT_QQ}`,
-        body: `message=${text}\n${desp}`,
+        json: {message:`${text}\n${desp}`},
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
         timeout,
       };
